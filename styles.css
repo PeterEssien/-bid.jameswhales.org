@@ -39,15 +39,32 @@ form {
     margin-top: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-input, select {
-    width: 100%;
+.form-group label {
+    flex: 0 0 200px;
+    margin-right: 10px;
+}
+
+.form-group input,
+.form-group select {
+    flex: 1;
     padding: 5px;
-    margin-top: 5px;
+}
+
+.tooltip-icon {
+    margin-left: 5px;
+    cursor: pointer;
+    color: blue;
+    font-weight: bold;
+}
+
+.tooltip-icon:hover {
+    color: darkblue;
 }
 
 button {
@@ -73,18 +90,6 @@ button {
     button {
         display: none;
     }
-}
-
-/* Tooltip Icon */
-.tooltip-icon {
-    cursor: pointer;
-    margin-left: 5px;
-    color: blue;
-    font-weight: bold;
-}
-
-.tooltip-icon:hover {
-    color: darkblue;
 }
 
 /* Popup Dialog */
