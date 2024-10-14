@@ -21,21 +21,21 @@
                         <option value="market">Market Value</option>
                         <option value="limit">Limit Order</option>
                     </select>
-                    <span class="info-icon" data-term="bid-type">❓</span>
+                    <span class="tooltip-icon" data-tooltip="Choose 'Market Value' to buy at the current market price, or 'Limit Order' to set your own price.">❓</span>
                 </label>
 
                 <div id="limit-value-container" style="display: none;">
                     <label>
                         Limit Order Value ($):
                         <input type="number" id="limit-value" min="0" step="0.01">
-                        <span class="info-icon" data-term="limit-order">❓</span>
+                        <span class="tooltip-icon" data-tooltip="Set the maximum price per Bitcoin you're willing to pay.">❓</span>
                     </label>
                 </div>
 
                 <label>
                     Size of Order (in hundreds):
                     <input type="number" id="order-size" min="1">
-                    <span class="info-icon" data-term="order-size">❓</span>
+                    <span class="tooltip-icon" data-tooltip="Specify the number of hundreds of Bitcoins you wish to purchase.">❓</span>
                 </label>
 
                 <button type="button" id="place-bid">Place Bid</button>
@@ -65,16 +65,15 @@
                 <p id="instructions-text"></p>
                 <button id="print-button">🖨️ Print</button>
             </div>
-        </main>
 
-        <!-- Popup Dialog Box -->
-        <div id="popup-dialog" style="display: none;">
-            <div id="popup-content">
-                <span id="popup-close">&times;</span>
-                <p id="popup-text"></p>
+            <!-- Popup Dialog -->
+            <div id="popup" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close-button">&times;</span>
+                    <p id="popup-text"></p>
+                </div>
             </div>
-        </div>
-
+        </main>
     </div>
 
     <script src="script.js"></script>
