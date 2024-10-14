@@ -75,15 +75,20 @@ button {
     }
 }
 
-/* Styles for the info icons */
-.info-icon {
+/* Tooltip Icon */
+.tooltip-icon {
     cursor: pointer;
-    font-size: 14px;
     margin-left: 5px;
+    color: blue;
+    font-weight: bold;
 }
 
-/* Styles for the popup dialog */
-#popup-dialog {
+.tooltip-icon:hover {
+    color: darkblue;
+}
+
+/* Popup Dialog */
+.popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -91,19 +96,19 @@ button {
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-#popup-content {
+.popup-content {
     background-color: #fff;
-    padding: 20px;
     border: 2px solid #000;
-    position: relative;
+    padding: 20px;
     width: 300px;
+    position: relative;
 }
 
-#popup-close {
+.close-button {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -111,6 +116,6 @@ button {
     font-size: 18px;
 }
 
-#popup-text {
-    font-size: 16px;
+.close-button:hover {
+    color: red;
 }
