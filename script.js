@@ -5,6 +5,9 @@ let orderSize = 0;
 let email = '';
 let captchaResult = 0;
 
+// Simulate market value
+const marketValue = 50000; // Assume $50,000 per Bitcoin
+
 // Handle bid type change
 document.getElementById('bid-type').addEventListener('change', function() {
     bidType = this.value;
@@ -19,17 +22,26 @@ document.getElementById('bid-type').addEventListener('change', function() {
 // Handle Place Bid button
 document.getElementById('place-bid').addEventListener('click', function() {
     orderSize = parseInt(document.getElementById('order-size').value) || 0;
+    if (orderSize <= 0) {
+        alert('Please enter a valid order size.');
+        return;
+    }
+
+    bidType = document.getElementById('bid-type').value;
+
     if (bidType === 'limit') {
         limitValue = parseFloat(document.getElementById('limit-value').value) || 0;
         if (limitValue <= 0) {
             alert('Please enter a valid limit order value.');
             return;
         }
+        // New validation for limit orders
+        if (limitValue < (marketValue - 10000)) {
+            alert('Your limit order bid is more than $10,000 below the market price and has been rejected.');
+            return;
+        }
     }
-    if (orderSize <= 0) {
-        alert('Please enter a valid order size.');
-        return;
-    }
+
     document.getElementById('bid-form').style.display = 'none';
     document.getElementById('email-form').style.display = 'block';
 });
@@ -75,8 +87,6 @@ function showInstructions() {
 
     let totalAmount = 0;
     if (bidType === 'market') {
-        // Simulate market value
-        const marketValue = 50000; // Assume $50,000 per Bitcoin
         totalAmount = marketValue * orderSize * 100;
     } else {
         totalAmount = limitValue * orderSize * 100;
@@ -98,3 +108,48 @@ function showInstructions() {
 document.getElementById('print-button').addEventListener('click', function() {
     window.print();
 });
+
+// Add event listeners for the info icons
+document.querySelectorAll('.info-icon').forEach(icon => {
+    icon.addEventListener('click', function() {
+        const term = this.getAttribute('data-term');
+        showPopup(term);
+    });
+});
+
+// Function to show popup dialog with explanations
+function showPopup(term) {
+    const popupDialog = document.getElementById('popup-dialog');
+    const popupText = document.getElementById('popup-text');
+    const popupClose = document.getElementById('popup-close');
+
+    let explanation = '';
+
+    switch(term) {
+        case 'bid-type':
+            explanation = 'Choose "Market Value" to bid at the current market price, or "Limit Order" to set a specific price.';
+            break;
+        case 'limit-order':
+            explanation = 'A limit order allows you to set the maximum price you are willing to pay per Bitcoin.';
+            break;
+        case 'order-size':
+            explanation = 'Specify the size of your order in hundreds of Bitcoins.';
+            break;
+        default:
+            explanation = '';
+    }
+
+    popupText.textContent = explanation;
+    popupDialog.style.display = 'flex';
+
+    popupClose.onclick = function() {
+        popupDialog.style.display = 'none';
+    }
+
+    // Close the popup when clicking outside the content
+    window.onclick = function(event) {
+        if (event.target == popupDialog) {
+            popupDialog.style.display = 'none';
+        }
+    }
+}
