@@ -82,8 +82,9 @@ button {
     font-size: 18px;
 }
 
-#print-button {
+#print-button, #validate-button {
     margin-top: 20px;
+    margin-right: 10px;
 }
 
 @media print {
@@ -123,4 +124,9 @@ button {
 
 .close-button:hover {
     color: red;
+}
+
+#upload-popup input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
 }
