@@ -120,26 +120,66 @@ document.getElementById('print-button').addEventListener('click', function() {
     }
 });
 
-// Tooltip functionality
-const tooltipIcons = document.querySelectorAll('.tooltip-icon');
-const popup = document.getElementById('popup');
-const popupText = document.getElementById('popup-text');
-const closeButton = document.querySelector('.close-button');
-
-tooltipIcons.forEach(function(icon) {
-    icon.addEventListener('click', function() {
-        const explanation = this.getAttribute('data-tooltip');
-        popupText.textContent = explanation;
-        popup.style.display = 'flex';
-    });
+// Handle Validate Order Button Click
+document.getElementById('validate-button').addEventListener('click', function() {
+    const uploadPopup = document.getElementById('upload-popup');
+    uploadPopup.style.display = 'flex';
 });
 
-closeButton.addEventListener('click', function() {
-    popup.style.display = 'none';
+// Handle File Upload
+document.getElementById('submit-upload').addEventListener('click', function() {
+    const fileInput = document.getElementById('file-input');
+    const uploadStatus = document.getElementById('upload-status');
+    
+    if (!fileInput.files.length) {
+        uploadStatus.textContent = 'Please select a file to upload.';
+        return;
+    }
+
+    // Simulate file upload (in a real application, you'd send the file to a server)
+    uploadStatus.textContent = 'Uploading...';
+
+    setTimeout(() => {
+        uploadStatus.textContent = ''; // Clear status after the "upload"
+        document.getElementById('upload-popup').style.display = 'none';
+        showUploadSuccess();
+    }, 2000); // Simulate a 2-second upload
+});
+
+// Show Success Message after Upload
+function showUploadSuccess() {
+    const popupText = document.getElementById('popup-text');
+    const popup = document.getElementById('popup');
+
+    popupText.innerHTML = `
+        Your wire instruction has been uploaded successfully. You will be contacted by email within 24 hours to complete your order if the wire reflects.<br><br>
+        For additional support, contact <a href="mailto:bid@johnwhales.org">bid@johnwhales.org</a>.
+    `;
+    popup.style.display = 'flex';
+}
+
+// Handle Closing Popups
+document.querySelector('.close-button').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
 });
 
 window.addEventListener('click', function(event) {
-    if (event.target === popup) {
+    const popup = document.getElementById('popup');
+    const uploadPopup = document.getElementById('upload-popup');
+    if (event.target === popup || event.target === uploadPopup) {
         popup.style.display = 'none';
+        uploadPopup.style.display = 'none';
     }
+});
+
+// Tooltip functionality
+const tooltipIcons = document.querySelectorAll('.tooltip-icon');
+tooltipIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+        const explanation = this.getAttribute('data-tooltip');
+        const popupText = document.getElementById('popup-text');
+        const popup = document.getElementById('popup');
+        popupText.textContent = explanation;
+        popup.style.display = 'flex';
+    });
 });
