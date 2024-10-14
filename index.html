@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jameswhale - Bitcoin Pioneer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jameswhale</h1>
+            <p>Since 1996!</p>
+        </header>
+
+        <main>
+            <h2>Bid for Bitcoin</h2>
+            <form id="bid-form">
+                <label>
+                    Bid Type:
+                    <select id="bid-type">
+                        <option value="market">Market Value</option>
+                        <option value="limit">Limit Order</option>
+                    </select>
+                </label>
+
+                <div id="limit-value-container" style="display: none;">
+                    <label>
+                        Limit Order Value ($):
+                        <input type="number" id="limit-value" min="0" step="0.01">
+                    </label>
+                </div>
+
+                <label>
+                    Size of Order (in hundreds):
+                    <input type="number" id="order-size" min="1">
+                </label>
+
+                <button type="button" id="place-bid">Place Bid</button>
+            </form>
+
+            <form id="email-form" style="display: none;">
+                <h2>Sign Up</h2>
+                <label>
+                    Email:
+                    <input type="email" id="email" required>
+                </label>
+                <button type="button" id="submit-email">Submit</button>
+            </form>
+
+            <form id="captcha-form" style="display: none;">
+                <h2>Verify You're Not a Robot</h2>
+                <p id="captcha-question"></p>
+                <label>
+                    Answer:
+                    <input type="number" id="captcha-answer" required>
+                </label>
+                <button type="button" id="submit-captcha">Verify</button>
+            </form>
+
+            <div id="instructions" style="display: none;">
+                <h2>Wire Instructions</h2>
+                <p id="instructions-text"></p>
+                <button id="print-button">🖨️ Print</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
