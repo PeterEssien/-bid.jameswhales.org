@@ -21,18 +21,21 @@
                         <option value="market">Market Value</option>
                         <option value="limit">Limit Order</option>
                     </select>
+                    <span class="info-icon" data-term="bid-type">❓</span>
                 </label>
 
                 <div id="limit-value-container" style="display: none;">
                     <label>
                         Limit Order Value ($):
                         <input type="number" id="limit-value" min="0" step="0.01">
+                        <span class="info-icon" data-term="limit-order">❓</span>
                     </label>
                 </div>
 
                 <label>
                     Size of Order (in hundreds):
                     <input type="number" id="order-size" min="1">
+                    <span class="info-icon" data-term="order-size">❓</span>
                 </label>
 
                 <button type="button" id="place-bid">Place Bid</button>
@@ -63,6 +66,15 @@
                 <button id="print-button">🖨️ Print</button>
             </div>
         </main>
+
+        <!-- Popup Dialog Box -->
+        <div id="popup-dialog" style="display: none;">
+            <div id="popup-content">
+                <span id="popup-close">&times;</span>
+                <p id="popup-text"></p>
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
